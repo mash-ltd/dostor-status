@@ -3,14 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.8'
 gem 'devise'
 gem 'haml-rails'
-
-group :development do
-  gem 'sqlite3'
-end
-
-group :production do
-  gem "pg"
-end
+gem 'sqlite3'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -34,7 +27,9 @@ gem 'jquery-rails'
 # gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano',           '2.12.0'
+gem 'capistrano-ext',       '1.2.1'
+gem 'capistrano_colors',    '0.5.5'
 
 # To use debugger
 # gem 'debugger'
