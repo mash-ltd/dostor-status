@@ -1,0 +1,22 @@
+%table.table
+  %thead
+    %tr
+      %th #
+      %th Body
+
+  %tbody
+    - unless @articles.empty?
+      - @articles.each do |article|
+        %tr
+          %td= article.number
+          %td= truncate article.body, length: 80
+          %td
+            = link_to "Show", article
+            |
+            = link_to "Edit", edit_article_path(article)
+            |
+            = link_to "Destroy", article, method: :delete, confirm: "Are you sure you want to delete article ##{article.number}?"
+    - else
+      %tr.error
+        %td{ colspan: 2, style: "text-align: center" }
+          No articles added yet
