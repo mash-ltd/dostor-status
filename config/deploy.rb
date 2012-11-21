@@ -31,6 +31,7 @@ set :keep_releases, 5
 # CALLBACKS
 
 # RELEASE
+after 'deploy:update', 'deploy:migrate'
 after 'deploy:update', 'dostor_status:restart'
 
 # TASKS
