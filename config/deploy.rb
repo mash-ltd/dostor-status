@@ -29,8 +29,6 @@ set :maintenance_template_path, File.join(File.dirname(__FILE__), '..', 'public'
 set :keep_releases, 5
 
 # CALLBACKS
-# INITIAL SETUP
-after 'deploy:setup', 'deploy:conf:create'
 
 # RELEASE
 after 'deploy:update', 'dostor_status:restart'

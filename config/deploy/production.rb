@@ -1,6 +1,6 @@
 set :deploy_to,         '/home/deployer/public_html/dostor-status'
 set :user,              'deployer'
-set :port,              1989
+set :port,              300
 set :use_sudo,          false
 
 set :branch,            "stable"
