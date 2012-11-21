@@ -7,7 +7,7 @@ gem 'haml-rails'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-group :development, :assets do
+group :development do
   gem 'sqlite3'
 end
 
