@@ -32,17 +32,9 @@ set :keep_releases, 5
 
 # RELEASE
 after 'deploy:update', 'deploy:migrate'
-after 'deploy:update', 'conf:symlink_db'
 after 'deploy:update', 'dostor_status:restart'
 
 # TASKS
-
-namespace :conf do
-  desc "symlinks the database"
-  task :symlink_db do
-    run "ln -s #{shared_path}/production.sqlite3 #{current_release}/db/production.sqlite3"
-  end
-end
 
 # Application specific
 namespace :dostor_status do
