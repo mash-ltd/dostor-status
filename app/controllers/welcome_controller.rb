@@ -45,4 +45,9 @@ class WelcomeController < ApplicationController
    @user = User.find_by_facebook_id @facebook_cookies["user_id"] if @facebook_cookies
    @logged_in_fb = @facebook_cookies.present? && @user.present?
   end
+
+
+  def tn(num)
+    num.to_s.split(//).map{|r|I18n.t("n"+r)}.join
+  end
 end
