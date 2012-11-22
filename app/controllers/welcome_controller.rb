@@ -18,6 +18,12 @@ class WelcomeController < ApplicationController
       @user = User.create facebook_id: @facebook_cookies["user_id"], access_token: @facebook_cookies["access_token"]
     end
 
+    graph = Koala::Facebook::API.new(@user.access_token)
+    offset = rand(Article.count)
+    article = Article.offset((offset < 0 ? 0 : offset)).first
+
+    graph.put_wall_post("#{tn(article.number)}: #{article.body}")
+
     respond_to do |format|
       format.html { redirect_to :root }
     end
