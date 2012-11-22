@@ -8,11 +8,15 @@
       مادة #{tn(@article.number)}،
     = @article.body
 
-- unless @logged_in_fb
-  %p{style: "text-align: center; padding-top: 30px"}
+%p{style: "text-align: center; padding-top: 30px"}
+  - unless @logged_in_fb
     %a#login_with_facebook.btn.btn-primary{href: "#"}
       %big
-        ادخل بفيسبوك
+        شارك على فيسبوك
+
+    = link_to root_path, class: "btn btn-success" do
+      %big
+        عرض مادة أخرى
 
 :javascript
   $(document).ready(function(){

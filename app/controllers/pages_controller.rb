@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  layout "welcome"
+  
   def contact
   end
 

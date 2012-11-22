@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121121152206) do
+ActiveRecord::Schema.define(:version => 20121122174122) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -39,8 +39,9 @@ ActiveRecord::Schema.define(:version => 20121121152206) do
   end
 
   create_table "users", :force => true do |t|
-    t.integer "facebook_id",  :limit => 8, :null => false
+    t.integer "facebook_id",     :limit => 8, :null => false
     t.string  "access_token"
+    t.integer "pushed_articles"
   end
 
 end

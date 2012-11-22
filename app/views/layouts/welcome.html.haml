@@ -14,6 +14,30 @@
             %span.icon-bar
             %span.icon-bar
           = link_to "دستور مصر", root_path, class: "brand", style: "float: right;"
+          - if @logged_in_fb
+            .collapse.nav-collapse
+              %ul.nav
+                %li= link_to "تسجيل الخروج من فيسبوك", fb_logout_path 
               
     .container
       = yield
+
+    .container{style: "padding: 80px"}
+      %hr
+      .span6
+        = link_to "عن الموقع", "/about"
+        |
+        = link_to "بوابة الدستور المصري", "http://www.dostour.eg", :target => "_blank"
+        |
+        = link_to "شارك برأيك", "http://www.dostour.eg/sharek/", :target => "_blank"
+        |
+        = link_to "سياسة الخصوصية", "/privacy"
+        |
+        = link_to "شروط الاستخدام", "/tos"
+
+      .span5{style: "direction: rtl; float: right"}
+        جميع الحقوق محفوظة لصالح شركة 
+        %a{href:"http://mashsolvents.com", target: "_blank"}
+          ماش المحدودة
+        لعام ٢٠١٢
+

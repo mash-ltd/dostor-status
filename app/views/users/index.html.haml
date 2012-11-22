@@ -1,0 +1,28 @@
+%h3 User statistics
+
+%dl.dl-horizontal
+  %dt Number of users
+  %dd= @user_count
+
+%br
+
+%table.table
+  %thead
+    %tr
+      %th Local id
+      %th Facebook id
+      %th Number of pushed articles
+
+  %tbody
+    - unless @users.empty?
+      - @users.each do |user|
+        %tr
+          %td= user.id
+          %td= user.facebook_id
+          %td= user.pushed_articles || 0
+          %td
+            = link_to "Destroy", user, method: :delete, confirm: "Are you sure you want to delete user ##{user.facebook_id}?"
+    - else
+      %tr.error
+        %td{ colspan: 3, style: "text-align: center" }
+          No users registered yet

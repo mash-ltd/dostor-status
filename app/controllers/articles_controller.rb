@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_filter :authenticate_admin!
 
   def index
-    @articles = Article.order("number DESC")
+    @articles = Article.order("number ASC")
 
     respond_to do |format|
       format.html
