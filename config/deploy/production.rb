@@ -7,8 +7,7 @@ set :branch,            "stable"
 
 role  :web,             "173.246.46.71"
 role  :app,             "173.246.46.71"
-# role  :cron,            "108.166.119.78"
-role  :db,              no_release: true
+role  :db,              "173.246.46.71", primary: true
 
 set :rails_env,         "production"
 set :asset_env,         "RAILS_GROUPS=assets" # dont ever remove
