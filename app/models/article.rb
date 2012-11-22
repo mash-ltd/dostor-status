@@ -1,10 +1,10 @@
+# encoding: utf-8
 class Article < ActiveRecord::Base
   attr_accessible :number, :body
 
   def to_fb
-    "مسودة الدستور، مادة #{tn(self.number)}: #{self.body}"
+    "#{I18n.t('fb_prefix')} #{tn(self.number)}: #{self.body}"
   end
-
 
   private
   def tn(num)

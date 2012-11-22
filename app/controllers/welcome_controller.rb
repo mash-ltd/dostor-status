@@ -1,3 +1,4 @@
+# encoding: utf-8
 class WelcomeController < ApplicationController
   before_filter :parse_facebook_cookies
   layout "welcome"
@@ -34,6 +35,7 @@ class WelcomeController < ApplicationController
       if success
         format.html { redirect_to :root }
       else
+        # encoding: utf-8
         format.html { redirect_to :fb_logout, alert: "الحصول على إذن استخدام صفحتك على فيسبوك لم ينجح" }
       end
     end
