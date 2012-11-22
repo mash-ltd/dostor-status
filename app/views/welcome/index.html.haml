@@ -1,7 +1,7 @@
 - if @article.present?
-  %p{style: "direction: rtl; font-size: 40px; text-align: center; padding-top: 80px; line-height: 40px;"} 
+  %p{style: "direction: rtl; font-size: 40px; text-align: center; padding-top: 80px;"} 
     = image_tag "egypt_coat_128.png"
-  %p{style: "direction: rtl; font-size: 40px; text-align: center; padding-top: 30px;"} 
+  %p{style: "direction: rtl; font-size: 40px; text-align: center; padding-top: 30px; line-height: 40px;"} 
     %span.muted{style: "vertical-align: bottom;"}
       مادة #{tn(@article.number)}،
     = @article.body
