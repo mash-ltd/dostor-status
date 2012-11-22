@@ -11,16 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121120235221) do
+ActiveRecord::Schema.define(:version => 20121121152206) do
 
-  create_table "articles", :force => true do |t|
-    t.string   "body",       :null => false
-    t.integer  "number",     :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "users", :force => true do |t|
+  create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
@@ -35,7 +28,19 @@ ActiveRecord::Schema.define(:version => 20121120235221) do
     t.datetime "updated_at",                             :null => false
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "admins", ["email"], :name => "index_admins_on_email", :unique => true
+  add_index "admins", ["reset_password_token"], :name => "index_admins_on_reset_password_token", :unique => true
+
+  create_table "articles", :force => true do |t|
+    t.string   "body",       :null => false
+    t.integer  "number",     :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.integer "facebook_id",  :limit => 8, :null => false
+    t.string  "access_token"
+  end
 
 end

@@ -1,0 +1,7 @@
+development: &default
+  app_id: 116905435136729
+  secret_key: be05c3dd4a999eafa94a3e278dc40914
+test: 
+  <<: *default
+production: 
+  <<: *default

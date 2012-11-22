@@ -1,0 +1,43 @@
+- if @article.present?
+  %p{style: "direction: rtl; font-size: 40px; text-align: center; padding-top: 80px"} 
+    = image_tag "egypt_coat_128.png"
+  %p{style: "direction: rtl; font-size: 40px; text-align: center; padding-top: 30px;"} 
+    %span.muted{style: "vertical-align: bottom;"}
+      مادة #{tn(@article.number)}،
+    = @article.body
+
+- unless @logged_in_fb
+  %p{style: "text-align: center; padding-top: 30px"}
+    %a#login_with_facebook.btn.btn-primary{href: "#"}
+      %big
+        ادخل بفيسبوك
+
+:javascript
+  $(document).ready(function(){
+    FB.getLoginStatus(function(response) {
+      if (response.status === 'connected') {
+        // connected
+      } else if (response.status === 'not_authorized') {
+        location.href = '#{fb_logout_path}'
+      } else {
+        // not_logged_in
+      }
+     });
+  });
+
+  $('#login_with_facebook').click(function(){
+    FB.init({
+      appId      : '#{ Facebook::APP_ID }',
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      xfbml      : true  // parse XFBML
+    });
+
+    FB.login(function(response) {
+      if (response.authResponse) {
+        location.href = '#{fb_login_path}'
+      } else {
+        // user cancelled login
+      }
+    });
+  })

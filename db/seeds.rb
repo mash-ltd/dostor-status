@@ -1,1 +1,1 @@
-User.create email: "info@mashsolvents.com", password: "MashDostor@123", password_confirmation: "MashDostor@123"
+Admin.create email: "info@mashsolvents.com", password: "MashDostor@123", password_confirmation: "MashDostor@123"

@@ -15,9 +15,8 @@ set :asset_env,         "RAILS_GROUPS=assets" # dont ever remove
 
 before "deploy:create_symlink", "deploy:assets:precompile_and_sync"
 
-# set :whenever_command, "bundle exec whenever"
-# set :whenever_roles, :cron
-# require "whenever/capistrano"
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
 
 namespace :deploy do
   namespace :assets do
