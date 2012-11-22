@@ -18,14 +18,24 @@ class WelcomeController < ApplicationController
       @user = User.create facebook_id: @facebook_cookies["user_id"], access_token: @facebook_cookies["access_token"]
     end
 
-    graph = Koala::Facebook::API.new(@user.access_token)
-    offset = rand(Article.count)
-    article = Article.offset((offset < 0 ? 0 : offset)).first
+    success = true
 
-    graph.put_wall_post("#{tn(article.number)}: #{article.body}")
+    begin
+      graph = Koala::Facebook::API.new(@user.access_token)
+      offset = rand(Article.count)
+      article = Article.offset((offset < 0 ? 0 : offset)).first
+
+      graph.put_wall_post(article.to_fb)
+    rescue
+      success = false
+    end
 
     respond_to do |format|
-      format.html { redirect_to :root }
+      if success
+        format.html { redirect_to :root }
+      else
+        format.html { redirect_to :fb_logout, alert: "الحصول على إذن استخدام صفحتك على فيسبوك لم ينجح" }
+      end
     end
   end
 
@@ -35,7 +45,7 @@ class WelcomeController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to :root }
+      format.html { redirect_to :root, alert: flash[:alert] }
     end
   end
 
@@ -44,10 +54,5 @@ class WelcomeController < ApplicationController
    @facebook_cookies = Koala::Facebook::OAuth.new.get_user_info_from_cookie(cookies)
    @user = User.find_by_facebook_id @facebook_cookies["user_id"] if @facebook_cookies
    @logged_in_fb = @facebook_cookies.present? && @user.present?
-  end
-
-
-  def tn(num)
-    num.to_s.split(//).map{|r|I18n.t("n"+r)}.join
   end
 end

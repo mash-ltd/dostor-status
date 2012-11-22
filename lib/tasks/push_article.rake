@@ -8,12 +8,8 @@ task :push_article => :environment do
       offset = rand(Article.count)
       article = Article.offset((offset < 0 ? 0 : offset)).first
 
-      graph.put_wall_post("#{tn(article.number)}: #{article.body}")
+      graph.put_wall_post(article.to_fb)
     rescue
     end
   end
-end
-
-def tn(num)
-  num.to_s.split(//).map{|r|I18n.t("n"+r)}.join
 end
