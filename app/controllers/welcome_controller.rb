@@ -27,7 +27,7 @@ class WelcomeController < ApplicationController
       article = Article.offset((offset < 0 ? 0 : offset)).first
 
       graph.put_wall_post(article.to_fb)
-      @user.increment(:pushed_articles)
+      @user.increment!(:pushed_articles)
     rescue
       success = false
     end
