@@ -14,5 +14,7 @@ DostorStatus::Application.routes.draw do
   get "/privacy", to: "pages#privacy"
   get "/tos", to: "pages#tos"
 
+  get "/:number", to: "welcome#index"
+
   root :to => 'welcome#index'
 end

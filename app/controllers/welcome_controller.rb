@@ -4,8 +4,14 @@ class WelcomeController < ApplicationController
   layout "welcome"
 
   def index
-    offset = rand(Article.count)
-    @article = Article.offset((offset < 0 ? 0 : offset)).first
+    if params[:number]
+      @article = Article.find_by_number params[:number]
+    end
+
+    unless @article.present?
+      offset = rand(Article.count)
+      @article = Article.offset((offset < 0 ? 0 : offset)).first
+    end
 
     respond_to do |format|
       format.html
