@@ -34,10 +34,10 @@ class WelcomeController < ApplicationController
       user_hash = graph.get_object("me")
       session["fb_user_id"] = user_hash["id"]
 
-      if @user
+      if @user && @user.facebook_id.to_s == session["fb_user_id"]
         @user.update_attribute :access_token, session["access_token"]
       elsif session["fb_user_id"].present?
-        @user = User.create facebook_id: session["fb_user_id"], access_token: session["access_token"]
+        @user = User.create! facebook_id: session["fb_user_id"].to_i, access_token: session["access_token"]
       else
         raise "Failed to sign into Facebook"
       end
