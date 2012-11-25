@@ -31,15 +31,13 @@ class WelcomeController < ApplicationController
 
     begin
       graph = Koala::Facebook::API.new(session["access_token"])
-      user_hash = graph.get_object("me")
-      session["fb_user_id"] = user_hash["id"]
-
-      @user = User.find_by_facebook_id session["fb_user_id"] if session["fb_user_id"]
 
       if @user
         @user.update_attribute :access_token, session["access_token"]
-      elsif session["fb_user_id"].present?
-        @user = User.create! facebook_id: session["fb_user_id"], access_token: session["access_token"]
+        session["fb_user_id"] = @user.facebook_id
+      elsif @facebook_cookies.present? && @facebook_cookies["user_id"].present?
+        @user = User.create! facebook_id: @facebook_cookies["user_id"], access_token: session["access_token"]
+        session["fb_user_id"] = @user.facebook_id
       else
         raise "Failed to sign into Facebook"
       end
@@ -77,7 +75,14 @@ class WelcomeController < ApplicationController
 
   private
   def parse_facebook_session
-   @user = User.find_by_facebook_id session["fb_user_id"] if session["fb_user_id"]
-   @logged_in_fb = session["fb_user_id"].present? && @user.present?
+    unless session["fb_user_id"].present?
+      @facebook_cookies ||= Koala::Facebook::OAuth.new.get_user_info_from_cookie(cookies)
+      user_id = @facebook_cookies["user_id"]
+    else
+      user_id = session["fb_user_id"]
+    end
+
+    @user = User.find_by_facebook_id user_id if user_id
+    @logged_in_fb = user_id.present? && @user.present?
   end
 end
