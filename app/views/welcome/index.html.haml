@@ -10,40 +10,10 @@
 
 %p{style: "text-align: center; padding-top: 30px"}
   - unless @logged_in_fb
-    = link_to Koala::Facebook::OAuth.new.url_for_oauth_code(:callback => oauth_redirect_url), class: "btn btn-primary" do
+    = link_to Koala::Facebook::OAuth.new.url_for_oauth_code(:callback => oauth_redirect_url), class: "btn btn-primary", style: "margin-right: 5px" do
       %big
         شارك على فيسبوك
   
   = link_to root_path, class: "btn btn-success" do
     %big
       مادة أخرى
-
-// :javascript
-//   $(document).ready(function(){
-//     FB.getLoginStatus(function(response) {
-//       if (response.status === 'connected') {
-//         // connected
-//       } else if (response.status === 'not_authorized') {
-//         location.href = '#{fb_logout_path}'
-//       } else {
-//         // not_logged_in
-//       }
-//      });
-//   });
-
-//   $('#login_with_facebook').click(function(){
-//     FB.init({
-//       appId      : '#{ Facebook::APP_ID }',
-//       status     : true, // check login status
-//       cookie     : true, // enable cookies to allow the server to access the session
-//       xfbml      : true  // parse XFBML
-//     });
-
-//     FB.login(function(response) {
-//       if (response.authResponse) {
-//         location.href = '#{fb_login_path}'
-//       } else {
-//         // user cancelled login
-//       }
-//     }, {scope:'publish_stream,offline_access'});
-//   })
