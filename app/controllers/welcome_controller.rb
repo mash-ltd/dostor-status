@@ -77,7 +77,7 @@ class WelcomeController < ApplicationController
   def parse_facebook_session
     unless session["fb_user_id"].present?
       @facebook_cookies ||= Koala::Facebook::OAuth.new.get_user_info_from_cookie(cookies)
-      user_id = @facebook_cookies["user_id"]
+      user_id = @facebook_cookies ? @facebook_cookies["user_id"] : nil
     else
       user_id = session["fb_user_id"]
     end
