@@ -1,6 +1,6 @@
 # encoding: utf-8
 class WelcomeController < ApplicationController
-  before_filter :parse_facebook_cookies
+  before_filter :parse_facebook_session
   layout "welcome"
 
   def index
@@ -18,17 +18,30 @@ class WelcomeController < ApplicationController
     end
   end
 
-  def fb_login
-    if @user
-      @user.update_attribute :access_token, @facebook_cookies["access_token"]
-    else
-      @user = User.create facebook_id: @facebook_cookies["user_id"], access_token: @facebook_cookies["access_token"]
-    end
+  def fb_callback
+    session[:access_token] = Koala::Facebook::OAuth.new(oauth_redirect_url).get_access_token(params[:code]) if params[:code]
 
+    respond_to do |format|
+      format.html { redirect_to session[:access_token] ? fb_login_path : fb_logout_path }
+    end
+  end
+
+  def fb_login
     success = true
 
     begin
-      graph = Koala::Facebook::API.new(@user.access_token)
+      graph = Koala::Facebook::API.new(session["access_token"])
+      user_hash = graph.get_object("me")
+      session["fb_user_id"] = user_hash["id"]
+
+      if @user
+        @user.update_attribute :access_token, session["access_token"]
+      elsif session["fb_user_id"].present?
+        @user = User.create facebook_id: session["fb_user_id"], access_token: session["access_token"]
+      else
+        raise "Failed to sign into Facebook"
+      end
+
       offset = rand(Article.count)
       article = Article.offset((offset < 0 ? 0 : offset)).first
 
@@ -59,9 +72,8 @@ class WelcomeController < ApplicationController
   end
 
   private
-  def parse_facebook_cookies
-   @facebook_cookies = Koala::Facebook::OAuth.new.get_user_info_from_cookie(cookies)
-   @user = User.find_by_facebook_id @facebook_cookies["user_id"] if @facebook_cookies
-   @logged_in_fb = @facebook_cookies.present? && @user.present?
+  def parse_facebook_session
+   @user = User.find_by_facebook_id session["fb_user_id"] if session["fb_user_id"]
+   @logged_in_fb = session["fb_user_id"].present? && @user.present?
   end
 end

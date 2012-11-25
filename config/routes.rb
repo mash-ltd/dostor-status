@@ -7,6 +7,7 @@ DostorStatus::Application.routes.draw do
   resources :articles
   resources :users, only: [:index, :destroy]
 
+  get "/fb_callback", to: "welcome#fb_callback", as: :oauth_redirect
   get "/fb_login", to: "welcome#fb_login", as: :fb_login
   get "/fb_logout", to: "welcome#fb_logout", as: :fb_logout
 
