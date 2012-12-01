@@ -1,3 +1,3 @@
-every 3.hours do
+every 6.hours do
   rake "push_article"
 end

@@ -1,7 +1,11 @@
 !!!
 %html{ :lang => "en", :"xml:fb" => "http://www.facebook.com/2008/fbml"}
   %head
-    %title دستور مصر
+    - if @article.present?
+      %title= "دستور مصر: مادة #{tn(@article.number)}"
+      %meta{name: "title", content: "دستور مصر: مادة #{tn(@article.number)}"}
+    - else
+      %title دستور مصر
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application", "http://connect.facebook.net/en_US/all.js"
     = csrf_meta_tags

@@ -15,7 +15,8 @@ DostorStatus::Application.routes.draw do
   get "/privacy", to: "pages#privacy"
   get "/tos", to: "pages#tos"
 
-  get "/:number", to: "welcome#index"
+  get "/:number", to: "welcome#index", as: :article_page
 
+  match "/naqesh/:article_number", to: redirect("http://beta.naqeshny.com/statuses/http-slash-slash-dostor-dot-mashsolvents-dot-com-slash-%{article_number}-number-nqsh-dstwrk"), as: :naqeshny
   root :to => 'welcome#index'
 end

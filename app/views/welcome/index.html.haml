@@ -17,3 +17,8 @@
   = link_to root_path, class: "btn btn-success" do
     %big
       مادة أخرى
+
+  = link_to naqeshny_url(@article.number), class: "btn btn-inverse btn-naqeshny", target: "_blank" do
+    %i.icon-naqeshny
+    %big
+      ناقشني
