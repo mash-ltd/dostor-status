@@ -13,12 +13,13 @@
     = link_to Koala::Facebook::OAuth.new.url_for_oauth_code(:callback => oauth_redirect_url), class: "btn btn-primary", style: "margin-right: 5px" do
       %big
         شارك على فيسبوك
-  
-  = link_to root_path, class: "btn btn-success" do
-    %big
-      مادة أخرى
 
+  = link_to root_path, class: "btn btn-success", style: "margin-right: 5px" do
+    %big
+      عرض مادة أخرى
+      
   = link_to naqeshny_url(@article.number), class: "btn btn-inverse btn-naqeshny", target: "_blank" do
     %i.icon-naqeshny
     %big
       ناقشني
+
