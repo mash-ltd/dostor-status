@@ -18,32 +18,7 @@
     %big
       مادة أخرى
 
-// :javascript
-//   $(document).ready(function(){
-//     FB.getLoginStatus(function(response) {
-//       if (response.status === 'connected') {
-//         // connected
-//       } else if (response.status === 'not_authorized') {
-//         location.href = '#{fb_logout_path}'
-//       } else {
-//         // not_logged_in
-//       }
-//      });
-//   });
-
-//   $('#login_with_facebook').click(function(){
-//     FB.init({
-//       appId      : '#{ Facebook::APP_ID }',
-//       status     : true, // check login status
-//       cookie     : true, // enable cookies to allow the server to access the session
-//       xfbml      : true  // parse XFBML
-//     });
-
-//     FB.login(function(response) {
-//       if (response.authResponse) {
-//         location.href = '#{fb_login_path}'
-//       } else {
-//         // user cancelled login
-//       }
-//     }, {scope:'publish_stream,offline_access'});
-//   })
+  = link_to naqeshny_url(@article.number), class: "btn btn-inverse btn-naqeshny", target: "_blank" do
+    %i.icon-naqeshny
+    %big
+      ناقشني
