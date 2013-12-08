@@ -34,4 +34,4 @@ gem 'capistrano-ext',       '1.2.1'
 gem 'capistrano_colors',    '0.5.5'
 
 # To use debugger
-# gem 'debugger'
+gem 'debugger'
