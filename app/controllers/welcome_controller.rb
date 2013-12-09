@@ -26,6 +26,12 @@ class WelcomeController < ApplicationController
     end
   end
 
+  def naqeshny
+    respond_to do |format|
+      format.html {render layout: false}
+    end
+  end
+
   def fb_login
     success = true
 
