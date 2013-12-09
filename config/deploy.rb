@@ -34,7 +34,6 @@ set :keep_releases, 5
 after 'deploy:update', 'deploy:migrate'
 after 'deploy:update', 'dostor:restart'
 after 'deploy:setup',  'dostor:conf:create'
-after 'deploy',        'dostor:notify_flow'
 
 before 'deploy:setup', 'rvm:create_gemset'
 before 'deploy:create_symlink', 'dostor:conf:update_symlinks'
@@ -47,8 +46,6 @@ set :rvm_type, :root
 set :rvm_ruby_string, '1.9.3-p374@dostor'
 
 require "rvm/capistrano"
-require 'flowdock/capistrano'
-
 
 # TASKS
  
