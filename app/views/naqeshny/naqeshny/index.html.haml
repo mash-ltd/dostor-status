@@ -59,7 +59,7 @@
           app_id: "#{params['app_id']}",
           object_id: "#{@article.id}",
           object_title: "مادة #{tn(@article.number)}",
-          object_content: "#{@article.body}",
+          object_content: "#{escape_javascript(@article.body)}",
           object_url: "#{params['object_url']}",
           arguments_container: "naqeshny_debate",
           width: $(".dstrk_comments_container").width()
