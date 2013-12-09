@@ -50,13 +50,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.4.0)
-    columnize (0.3.6)
-    debugger (1.6.3)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.2.0)
-      debugger-ruby_core_source (~> 1.2.4)
-    debugger-linecache (1.2.0)
-    debugger-ruby_core_source (1.2.4)
     devise (2.1.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -101,6 +94,8 @@ GEM
       net-ssh (>= 1.99.1)
     orm_adapter (0.4.0)
     polyglot (0.3.3)
+    puma (2.7.1)
+      rack (>= 1.1, < 2.0)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -126,6 +121,8 @@ GEM
     rake (10.0.2)
     rdoc (3.12)
       json (~> 1.4)
+    rvm-capistrano (1.2.7)
+      capistrano (>= 2.0.0)
     sass (3.2.3)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
@@ -162,12 +159,13 @@ DEPENDENCIES
   capistrano-ext (= 1.2.1)
   capistrano_colors (= 0.5.5)
   coffee-rails (~> 3.2.1)
-  debugger
   devise
   haml-rails
   jquery-rails
   koala
+  puma
   rails (= 3.2.8)
+  rvm-capistrano (~> 1.2.7)
   sass-rails (~> 3.2.3)
   sqlite3
   therubyracer

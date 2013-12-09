@@ -32,6 +32,11 @@ gem 'jquery-rails'
 gem 'capistrano',           '2.12.0'
 gem 'capistrano-ext',       '1.2.1'
 gem 'capistrano_colors',    '0.5.5'
+gem 'rvm-capistrano'        , '~> 1.2.7'
 
 # To use debugger
-gem 'debugger'
+# gem 'debugger'
+
+group :production do
+  gem 'puma'
+end
