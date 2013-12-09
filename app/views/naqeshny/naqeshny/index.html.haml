@@ -55,12 +55,14 @@
             %a{:href => "http://www.naqeshny.com/contact_us", :target => "_blank"} تواصل معنا
 
       :javascript
-        initFrame({
-          app_id: "#{params['app_id']}",
-          object_id: "#{@article.id}",
-          object_title: "مادة #{tn(@article.number)}",
-          object_content: "#{escape_javascript(@article.body)}",
-          object_url: "#{params['object_url']}",
-          arguments_container: "naqeshny_debate",
-          width: $(".dstrk_comments_container").width()
-        })
+        $(document).ready(new function(){
+          initFrame({
+            app_id: "#{params['app_id']}",
+            object_id: "#{@article.id}",
+            object_title: "مادة #{tn(@article.number)}",
+            object_content: "#{escape_javascript(@article.body)}",
+            object_url: "#{params['object_url']}",
+            arguments_container: "naqeshny_debate",
+            width: $(".dstrk_comments_container").width()
+          })
+        });
