@@ -1,13 +1,13 @@
-set :deploy_to,         '/home/deployer/public_html/dostor-status'
-set :user,              'deployer'
-set :port,              300
+set :deploy_to,         '/home/planoroid/public_html/dostor'
+set :user,              'planoroid'
+set :port,              1989
 set :use_sudo,          false
 
 set :branch,            "stable"
 
-role  :web,             "173.246.46.71"
-role  :app,             "173.246.46.71"
-role  :db,              "173.246.46.71", primary: true
+role  :web,             "198.61.232.122"
+role  :app,             "198.61.232.122"
+role  :db,              "198.61.232.122", primary: true
 
 set :rails_env,         "production"
 set :asset_env,         "RAILS_GROUPS=assets" # dont ever remove
