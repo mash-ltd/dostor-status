@@ -7,7 +7,7 @@ li{ list-style-type: none;}
 h3{ font-size:22px;text-shadow: 0px 2px 0px #e5e5e5; white-space: nowrap; display: block; text-align: center; padding-top: 20px;}
 h2{ font-size:22px;white-space: nowrap; display: block; color: #808080;}
 /*top area style*/
-.dstrk_Container{ margin: auto; width: 58%;min-width: 400px; padding:0 10px; font-size: 14px;}
+.dstrk_Container{ margin: auto; min-width: 400px; padding:0 10px; font-size: 14px;}
 .dstrk_tobBar{ position: relative; z-index:1;background-color: #efefef;padding:20px 0;-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .15);box-shadow: 0 1px 1px rgba(0, 0, 0, .15);}
 .dstrk_Menu{ float: right; position: relative; margin-right: 25px;}
 .dstrk_Menu > a.popup{background: asset-url("naqeshny/Arrows.png", image) no-repeat scroll 13px 14px #fff; white-space:nowrap;-webkit-border-radius: 2px;border-radius: 2px;border: solid 1px #fff; display:block;padding: 8px 20px 13px 40px;font-size: 15px;color: #333;-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .07);box-shadow: 0 1px 1px rgba(0, 0, 0, .07);}
