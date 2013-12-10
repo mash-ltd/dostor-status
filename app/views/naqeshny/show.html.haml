@@ -1,4 +1,4 @@
-<!doctype html>
+!!!
 /[if lt IE 7 ] <html class="ie ie6" lang="ar" dir="rtl">
 /[if IE 7 ] <html class="ie ie7" lang="ar" dir="rtl">
 /[if IE 8 ] <html class="ie ie8" lang="ar" dir="rtl">
@@ -9,8 +9,13 @@
   %head
     %meta{:charset => "utf-8"}/
     %title Dostoorak
-    = javascript_include_tag "application", "http://nq4.cdn.services.infralayer.com/static/api/naqeshny_arguments_ext.js"
+    = javascript_include_tag "application", "http://localhost:3001/naqeshny_arguments_ext.js"#"http://nq4.cdn.services.infralayer.com/static/api/naqeshny_arguments_ext.js"
     = stylesheet_link_tag    "naqeshny/style", :media => "all"
+
+    %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}
+    %meta{:content => "", :name => "description"}
+    %meta{:content => "width=device-width", :name => "viewport"}
+    = csrf_meta_tag
   %body
     .dstrk_Container
       .dstrk_tobBar.clearfix
@@ -55,14 +60,12 @@
             %a{:href => "http://www.naqeshny.com/contact_us", :target => "_blank"} تواصل معنا
 
       :javascript
-        $(document).ready(new function(){
-          initFrame({
-            app_id: "#{params['app_id']}",
-            object_id: "#{@article.id}",
-            object_title: "مادة #{tn(@article.number)}",
-            object_content: "#{escape_javascript(@article.body)}",
-            object_url: "#{params['object_url']}",
-            arguments_container: "naqeshny_debate",
-            width: $(".dstrk_comments_container").width()
-          })
-        });
+        initFrame({
+          app_id: "#{params['app_id']}",
+          object_id: "#{@article.id}",
+          object_title: "مادة #{tn(@article.number)}",
+          object_content: "#{escape_javascript(@article.body)}",
+          object_url: "#{params['object_url']}",
+          arguments_container: "naqeshny_debate",
+          width: $(".dstrk_comments_container").width()
+        })

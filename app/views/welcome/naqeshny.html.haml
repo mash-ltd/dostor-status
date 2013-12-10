@@ -1,18 +1,71 @@
 !!!
-%html{ :lang => "en", :"xml:fb" => "http://www.facebook.com/2008/fbml"}
+/[if lt IE 7 ] <html class="ie ie6" lang="ar" dir="rtl">
+/[if IE 7 ] <html class="ie ie7" lang="ar" dir="rtl">
+/[if IE 8 ] <html class="ie ie8" lang="ar" dir="rtl">
+/[if IE 9 ] <html class="ie ie9" lang="ar" dir="rtl">
+/ [if (gte IE 9)|!(IE)]><!
+%html{:dir => "rtl", :lang => "ar", :xmlns => "http://www.w3.org/1999/xhtml"}
+  / <![endif]
   %head
-    = javascript_include_tag "http://nq4.cdn.services.infralayer.com/static/api/naqesh_dostorak_ext.js"
-    = csrf_meta_tags
-  %body
-    #naqeshny_debate
+    %meta{:charset => "utf-8"}/
+    %title Dostoorak
+    = javascript_include_tag "application", "http://localhost:3001/naqeshny_arguments_ext.js"#"http://nq4.cdn.services.infralayer.com/static/api/naqeshny_arguments_ext.js"
+    = stylesheet_link_tag    "naqeshny/style", :media => "all"
 
-    :javascript
-      initFrame({
-        app_id: "51f521d7687f2540060004b0",
-        object_id: "1",
-        object_content: "ناقش دستورك",
-        object_url: "http://dostor.mashsolvents.com/dostor-test",
-        arguments_container: "naqeshny_debate",
-        width: 940
-      })
-    
+    %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}
+    %meta{:content => "", :name => "description"}
+    %meta{:content => "width=device-width", :name => "viewport"}
+    = csrf_meta_tag
+  %body
+    .dstrk_Container
+      .dstrk_tobBar.clearfix
+        .dstrk_Menu
+          %a.popup.excludPopup{:href => "#"} القائمة الرئيسية
+          .popup_container
+            = link_to "http://www.naqeshny.com/naqesh_dostorak/new?#{request.env["QUERY_STRING"]}" do
+              الصفحة الرئيسية
+            %label{:for => "num"}
+              ذهاب للمادة بالرقم
+              %input#num{:placeholder => "المادة رقم ...", :type => "text"}/
+      .imgBG
+        %h1.bvl_title دستور مصر
+        = image_tag "naqeshny/imgBG.jpg", alrt: ""
+      .dstrk_subjects
+        %ul.dstrk_navigate
+          %li.subj_prev
+            = link_to "المادة السابقة", article_naqeshny_page_path((@article.number - 1), @qs)
+          %li.subj_num
+            %span مادة #{tn(@article.number)}
+          %li.supj_next
+            = link_to "المادة التالية", article_naqeshny_page_path((@article.number + 1), @qs)
+        .subject
+          %p
+            = @article.body
+        .dstrk_buttns
+          %ul.dstrk_navigate
+            %li.subj_prev
+              = link_to "المادة السابقة", article_naqeshny_page_path((@article.number - 1), @qs)
+            %li.supj_next
+              = link_to "المادة التالية", article_naqeshny_page_path((@article.number + 1), @qs)
+      .dstrk_comments_container#naqeshny_debate
+      .footer
+        .Naqeshny_logo
+          %a{href: "http://www.naqeshny.com/", :target => "_blank"} Naqeshny.com
+        %ul
+          %li
+            %a{:href => "http://www.naqeshny.com/about", :target => "_blank"} نبذة عنا
+          %li
+            %a{:href => "http://www.naqeshny.com/tos", :target => "_blank"} الشــروط والأحـكـام
+          %li
+            %a{:href => "http://www.naqeshny.com/contact_us", :target => "_blank"} تواصل معنا
+
+      :javascript
+        initFrame({
+          app_id: "#{params['app_id']}",
+          object_id: "#{@article.id}",
+          object_title: "مادة #{tn(@article.number)}",
+          object_content: "#{escape_javascript(@article.body)}",
+          object_url: "#{article_naqeshny_page_path(number: @article.number)}",
+          arguments_container: "naqeshny_debate",
+          width: $(".dstrk_comments_container").width()
+        })

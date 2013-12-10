@@ -1,8 +1,6 @@
 # encoding: utf-8
-class Naqeshny::NaqeshnyController < ApplicationController
-  layout false
-
-  def index
+class NaqeshnyController < ApplicationController
+  def show
     @qs = Rack::Utils.parse_nested_query(request.env["QUERY_STRING"])
     if params[:number]
       @article = Article.find_by_number params[:number]
@@ -13,7 +11,7 @@ class Naqeshny::NaqeshnyController < ApplicationController
     end
 
     respond_to do |format|
-      format.html
+      format.html {render layout: false}
     end
   end
 end
