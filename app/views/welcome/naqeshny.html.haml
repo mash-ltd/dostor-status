@@ -65,7 +65,7 @@
           object_id: "#{@article.id}",
           object_title: "مادة #{tn(@article.number)}",
           object_content: "#{escape_javascript(@article.body)}",
-          object_url: "#{article_naqeshny_page_path(number: @article.number)}",
+          object_url: "#{article_naqeshny_page_url(number: @article.number)}",
           arguments_container: "naqeshny_debate",
           width: $(".dstrk_comments_container").width()
         })
