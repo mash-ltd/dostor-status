@@ -48,16 +48,6 @@
             %li.supj_next
               = link_to "المادة التالية", article_naqeshny_page_path((@article.number + 1), @qs)
       .dstrk_comments_container#naqeshny_debate
-      .footer
-        .Naqeshny_logo
-          %a{href: "http://www.naqeshny.com/", :target => "_blank"} Naqeshny.com
-        %ul
-          %li
-            %a{:href => "http://www.naqeshny.com/about", :target => "_blank"} نبذة عنا
-          %li
-            %a{:href => "http://www.naqeshny.com/tos", :target => "_blank"} الشــروط والأحـكـام
-          %li
-            %a{:href => "http://www.naqeshny.com/contact_us", :target => "_blank"} تواصل معنا
 
       :javascript
         initFrame({
