@@ -52,7 +52,7 @@
       :javascript
         initFrame({
           app_id: "#{params['app_id']}",
-          object_id: "#{@statement.id}",
+          object_id: "#{@statement.id + 9000}",
           object_title: "#{tn(@statement.number)}",
           object_content: "#{escape_javascript(@statement.body)}",
           object_url: "#{statement_naqeshny_page_url(number: @statement.number)}",
