@@ -1,0 +1,22 @@
+%table.table
+  %thead
+    %tr
+      %th #
+      %th Body
+
+  %tbody
+    - unless @statements.empty?
+      - @statements.each do |statement|
+        %tr
+          %td= statement.number
+          %td= truncate statement.body, length: 80
+          %td
+            = link_to "Show", statement
+            |
+            = link_to "Edit", edit_statement_path(statement)
+            |
+            = link_to "Destroy", statement, method: :delete, confirm: "Are you sure you want to delete statement ##{statement.number}?"
+    - else
+      %tr.error
+        %td{ colspan: 2, style: "text-align: center" }
+          No statements added yet

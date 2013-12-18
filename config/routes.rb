@@ -6,11 +6,13 @@ DostorStatus::Application.routes.draw do
 
   scope 'admin' do
     resources :articles
+    resources :statements
     resources :users, only: [:index, :destroy]
   end
 
   get "/dostor-test", to: "welcome#naqeshny_article"
   get "articles/:number", to: "welcome#naqeshny", as: :article_naqeshny_page
+  get "statements/:number", to: "welcome#naqeshny_netherlands", as: :statement_naqeshny_page
 
   get "/fb_callback", to: "welcome#fb_callback", as: :oauth_redirect
   get "/fb_login", to: "welcome#fb_login", as: :fb_login

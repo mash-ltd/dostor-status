@@ -1,0 +1,62 @@
+!!!
+/[if lt IE 7 ] <html class="ie ie6" lang="ar" dir="rtl">
+/[if IE 7 ] <html class="ie ie7" lang="ar" dir="rtl">
+/[if IE 8 ] <html class="ie ie8" lang="ar" dir="rtl">
+/[if IE 9 ] <html class="ie ie9" lang="ar" dir="rtl">
+/ [if (gte IE 9)|!(IE)]><!
+%html{:dir => "rtl", :lang => "ar", :xmlns => "http://www.w3.org/1999/xhtml"}
+  / <![endif]
+  %head
+    %meta{:charset => "utf-8"}/
+    %title Dostoorak
+    = javascript_include_tag "application", "http://nq4.cdn.services.infralayer.com/static/api/naqeshny_arguments_ext.js"
+    = stylesheet_link_tag    "naqeshny/style", :media => "all"
+
+    %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}
+    %meta{:content => "", :name => "description"}
+    %meta{:content => "width=device-width", :name => "viewport"}
+    = csrf_meta_tag
+  %body
+    .dstrk_Container
+      .dstrk_tobBar.clearfix
+        .dstrk_Menu
+          %a.popup.excludPopup{:href => "#"} القائمة الرئيسية
+          .popup_container
+            = link_to "http://www.naqeshny.com/naqesh_dostorak/netherlands?#{request.env["QUERY_STRING"]}" do
+              الصفحة الرئيسية
+            %label{:for => "num"}
+              ذهاب للمادة بالرقم
+              %input#num{:placeholder => "المادة رقم ...", :type => "text"}/
+      .imgBG
+        %h1.bvl_title دستور مصر
+        = image_tag "naqeshny/imgBG.jpg", alrt: ""
+      .dstrk_subjects
+        %ul.dstrk_navigate
+          %li.subj_prev
+            = link_to "السابقة", statement_naqeshny_page_path((@statement.number - 1), @qs)
+          %li.subj_num
+            %span #{tn(@statement.number)}
+          %li.supj_next
+            = link_to "التالية", statement_naqeshny_page_path((@statement.number + 1), @qs)
+        .subject
+          %p
+            = @statement.body
+        .dstrk_buttns
+          %ul.dstrk_navigate
+            %li.subj_prev
+              = link_to "السابق", statement_naqeshny_page_path((@statement.number - 1), @qs)
+            %li.supj_next
+              = link_to "التالي", statement_naqeshny_page_path((@statement.number + 1), @qs)
+      .dstrk_comments_container#naqeshny_debate
+
+      :javascript
+        initFrame({
+          app_id: "#{params['app_id']}",
+          object_id: "#{@statement.id}",
+          object_title: "#{tn(@statement.number)}",
+          object_content: "#{escape_javascript(@statement.body)}",
+          object_url: "#{statement_naqeshny_page_url(number: @statement.number)}",
+          arguments_container: "naqeshny_debate",
+          nether_question: true,
+          width: $(".dstrk_comments_container").width()
+        })

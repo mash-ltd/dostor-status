@@ -1,0 +1,17 @@
+= form_for @statement, html: { class: "form-horizontal" } do |f|
+  %fieldset
+    %legend #{params[:action].humanize} statement
+
+    .control-group
+      = f.label :number, "Statement number", class: "control-label"
+      .controls
+        = f.text_field :number, class: "input-mini"
+
+    .control-group
+      = f.label :body, "Body", class: "control-label"
+      .controls
+        = f.text_area :body, rows: 3, class: "input-xxlarge"
+
+    .control-group
+      .controls
+        = f.submit "Save", class: "btn"
