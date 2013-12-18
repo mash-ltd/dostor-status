@@ -1,0 +1,18 @@
+!!!
+%html{ :lang => "en", :"xml:fb" => "http://www.facebook.com/2008/fbml"}
+  %head
+    = javascript_include_tag "http://nq4.cdn.services.infralayer.com/static/api/naqesh_dostorak_netherlands_ext.js"
+    = csrf_meta_tags
+  %body
+    #naqeshny_debate
+
+    :javascript
+      initFrame({
+        app_id: "51f521d7687f2540060004b0",
+        object_id: "300",
+        object_content: "ناقش دستورك",
+        object_url: "http://dostor.mashsolvents.com/netherlands-test",
+        arguments_container: "naqeshny_debate",
+        width: $("body").width()
+      })
+    

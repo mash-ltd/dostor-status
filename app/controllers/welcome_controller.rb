@@ -71,6 +71,12 @@ class WelcomeController < ApplicationController
     end
   end
 
+  def naqeshny_nether_test
+    respond_to do |format|
+      format.html {render layout: false}
+    end
+  end
+
   def fb_login
     success = true
 

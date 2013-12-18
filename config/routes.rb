@@ -11,6 +11,7 @@ DostorStatus::Application.routes.draw do
   end
 
   get "/dostor-test", to: "welcome#naqeshny_article"
+  get "/netherlands-test", to: "welcome#naqeshny_nether_test"
   get "articles/:number", to: "welcome#naqeshny", as: :article_naqeshny_page
   get "statements/:number", to: "welcome#naqeshny_netherlands", as: :statement_naqeshny_page
 
