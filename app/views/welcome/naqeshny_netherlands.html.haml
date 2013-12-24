@@ -44,6 +44,8 @@
             = link_to "التالية", statement_naqeshny_page_path((@statement.number + 1), @qs)
         .subject
           %p
+            = link_to "(طبقًا للمادة #{@statement.article})", article_naqeshny_page_url(number: @statement.article)
+          %p
             = @statement.body
         .dstrk_buttns
           %ul.dstrk_navigate

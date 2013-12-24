@@ -8,6 +8,11 @@
         = f.text_field :number, class: "input-mini"
 
     .control-group
+      = f.label :article, "Related article", class: "control-label"
+      .controls
+        = f.text_field :article, class: "input-mini"
+
+    .control-group
       = f.label :body, "Body", class: "control-label"
       .controls
         = f.text_area :body, rows: 3, class: "input-xxlarge"

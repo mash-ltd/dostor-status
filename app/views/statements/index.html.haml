@@ -2,6 +2,7 @@
   %thead
     %tr
       %th #
+      %th Related article
       %th Body
 
   %tbody
@@ -9,6 +10,7 @@
       - @statements.each do |statement|
         %tr
           %td= statement.number
+          %td= statement.article
           %td= truncate statement.body, length: 80
           %td
             = link_to "Show", statement

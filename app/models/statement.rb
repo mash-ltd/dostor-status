@@ -1,5 +1,5 @@
 class Statement < ActiveRecord::Base
-  attr_accessible :body, :number
+  attr_accessible :body, :number, :article
 
   private
   def tn(num)
