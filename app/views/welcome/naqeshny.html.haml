@@ -22,13 +22,25 @@
         .dstrk_Menu
           %a.popup.excludPopup{:href => "#"} القائمة الرئيسية
           .popup_container
-            = link_to "http://www.naqeshny.com/naqesh_dostorak/new?#{request.env["QUERY_STRING"]}" do
-              الصفحة الرئيسية
+            - if @netherlands 
+              = link_to "http://www.naqeshny.com/naqesh_dostorak/netherlands?#{request.env["QUERY_STRING"]}" do
+                الصفحة الرئيسية
+            - else
+              = link_to "http://www.naqeshny.com/naqesh_dostorak/new?#{request.env["QUERY_STRING"]}" do
+                الصفحة الرئيسية
             %label{:for => "num"}
               ذهاب للمادة بالرقم
               %input#num{:placeholder => "المادة رقم ...", :type => "text"}/
+        - if @netherlands
+          .dstr_social_netherlands
+            %a.honasawtak{href: "http://hunasotak.com/", target: "_blank"} hona sawtak
+            %a.kieskompas{href: "http://www.kieskompas.nl/", target: "_blank"} kieskompas
+            %a.naqeshny{href: "http://www.naqeshny.com", target: "_blank"} naqeshny
       .imgBG
-        %h1.bvl_title دستور مصر
+        - if @netherlands
+          %h1.bvl_title دستورك
+        - else
+          %h1.bvl_title دستور مصر
         = image_tag "naqeshny/imgBG.jpg", alrt: ""
       .dstrk_subjects
         %ul.dstrk_navigate
