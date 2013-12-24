@@ -36,7 +36,11 @@ class WelcomeController < ApplicationController
       @article = Article.find_by_number 1
     end
 
-    @netherlands = request.referrer.match(/.*netherlands.*/).present?
+    @netherlands = request.referrer.match(/.*netherlands.*/).present? || params[:netherlands].present?
+
+    if @netherlands
+      @qs[:netherlands] = true
+    end
     
     respond_to do |format|
       format.html {render layout: false}
